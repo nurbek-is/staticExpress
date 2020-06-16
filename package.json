@@ -1,6 +1,6 @@
 {
-  "name": "form-validation",
-  "description": "A form validation app",
+  "name": "xhr",
+  "description": "Form validation with Ajax",
   "version": "1.0.0",
   "dependencies": {
     "express": "^4.17.1",

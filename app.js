@@ -5,26 +5,53 @@ const app = express();
 app.use(express.static('public'));
 app.use(express.urlencoded({ extended: false }));
 
+const couponCodes = [
+    'webuc8',
+    'buyonegetone',
+    'zippy'
+];
+
 app.get('/', (request, response) => {
     response.redirect('/ice-cream.html');
 });
-
+app.post('/coupon-check', [
+    check('coupon', 'Invalid coupon code').isIn(couponCodes)
+], function(request, response) {
+    const errors = validationResult(request);
+ 
+    let msg;
+    if (errors.isEmpty()) {
+        msg = '<span class="valid">Coupon validated</span>';
+    } else {
+        msg = '<span class="invalid">Invalid coupon</span>';
+    }
+    response.status(200);
+    response.send(msg);
+});
 app.post('/process', [
-    check('username','Invalid username, It has to be between 8-25 chaerachters').isLength({min:8,max:25}).isLowercase()
-    .withMessage('Username must be in all lowercase letters.'),
-    check('email','Invalid email, please type in a valid email').isEmail(),
-    check('phone','Invalid phone, please type in a valid phone number in format: ###-###-####').matches(
-        /[1-9]\d{2}-\d{3}-\d{4}/),
-    check('flavor','please choose at least one of the flavors').not().equals('0'),
-    check('container','please choose at least one of the choice of container').exists(),
+    check('username', 
+        'Username must be 8 to 25 characters.').isLength(
+            { min: 8, max: 25 }
+        ),
+    check('email', 'Invalid Email').isEmail(),
+    check('phone', 'Invalid Phone. Use format: ###-###-####').matches(
+        /[1-9]\d{2}-\d{3}-\d{4}/
+    ),
+    check('flavor','Please select a flavor.').not().equals('0'),
+    check('container','Please select a container.').exists(),
     check('terms','You must accept the terms.').exists(),
-    check('requests','Comments must be from 10-200 characters').custom(
-        (value)=> {
-            return value.length===0 ||
-            (value.length>=10 && value.length<=200)
+    check('requests','Comment must be from 10 to 200 chars.').custom(
+        (value) => {
+            return value.trim().length === 0 || 
+                (value.length >= 10 && value.length <= 200);
+        }
+    ),
+    check('coupon', 'Invalid coupon code').custom(
+        function(value) {
+            return value.trim().length == 0 ||
+            couponCodes.indexOf(value) >= 0
         }
     )
-    
 ], (request, response) => {
     const errors = validationResult(request);
 

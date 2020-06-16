@@ -1,0 +1,92 @@
+form,
+main {
+  margin: 20px auto;
+  max-width: 500px;
+}
+
+label {
+  font-size: 16pt;
+  font-family: Arial;
+  display: block;
+  margin: 5px 0px;
+}
+
+label[for='terms'],
+fieldset label {
+  display: inline;
+  font-size: 10pt;
+}
+
+input,
+textarea {
+  border: 1px solid #333;
+  border-bottom: 4px solid #000;
+  box-sizing: border-box;
+  font-size: 14pt;
+  margin: 0;
+  padding: 4px;
+  width: 100%;
+}
+
+input[type='radio'],
+input[type='checkbox'] {
+  display: inline;
+  margin: 0 5px;
+  width: auto;
+}
+
+fieldset {
+  border: 1px solid #333;
+  border-bottom: 4px solid #000;
+  margin: 15px 0px;
+  padding: 15px;
+}
+
+fieldset legend {
+  font-size: 16pt;
+}
+
+select {
+  font-size: 14pt;
+  width: 100%;
+}
+
+textarea {
+  height: 100px;
+  width: 100%;
+}
+
+.error {
+  background-color: rgba(255, 0, 0, .1);
+  border-radius: 5px 5px 0 0;
+  box-sizing: border-box;
+  color: #f00;
+  display: block;
+  font-size: 80%;
+  font-weight: bold;
+  padding: 3px;
+  width: 100%;
+}
+
+button {
+  float: right;
+  font-size: 16pt;
+  margin: 10px;
+}
+
+#coupon-container {
+  background-color: green;
+  color: white;
+}
+
+#coupon-container button {
+  font-size: small;
+}
+
+#coupon-message span.invalid {
+  color: pink;
+}
+
+#coupon-message span.valid {
+  color: lime;
+}

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="normalize.css">
+<link rel="stylesheet" href="styles.css">
+<!-- <script src="ice-cream.js"></script> -->
+<script src="ajax.js"></script>
+<title>Ice Cream Order Form</title>
+</head>
+<body>
+<form id="ice-cream-form" method="post" action="process" novalidate>
+  <label for="username">Username*:</label>
+  <input type="text" id="username" name="username" 
+    required minlength="8" maxlength="25">
+  <label for="email">Email*:</label>
+  <input type="email" id="email" name="email" required>
+  <label for="phone">Telephone:</label>
+  <input type="tel" id="phone" name="phone" pattern="[1-9]\d{2}-\d{3}-\d{4}">
+
+  <fieldset>
+    <legend>Cup or Cone*:</legend>
+    <label>
+      <input type="radio" name="container" value="cup" required>
+      Cup
+    </label>
+    <label>
+      <input type="radio" name="container" value="plaincone" required>
+      Plain cone
+    </label>
+    <label>
+      <input type="radio" name="container" value="sugarcone" required>
+      Sugar cone
+    </label>
+    <label>
+      <input type="radio" name="container" value="wafflecone" required>
+      Waffle Cone
+    </label>
+  </fieldset>
+
+  <label for="flavor">Flavor*:</label>
+  <select name="flavor" id="flavor" required>
+    <option value="0" selected="selected">--Please Choose--</option>
+    <optgroup label="Soft Flavors">
+      <option value="softChoc">Chocolate</option>
+      <option value="softStraw">Strawberry</option>
+      <option value="softVan">Vanilla</option>
+    </optgroup>
+    <optgroup label="Hard Flavors">
+      <option value="hardChoc">Chocolate</option>
+      <option value="hardStraw">Strawberry</option>
+      <option value="hardVan">Vanilla</option>
+      <option value="hardMint">Mint Chocolate Chip</option>
+      <option value="hardCC">Cookies &amp; Cream</option>
+    </optgroup>
+  </select>
+
+  <fieldset id="toppings">
+    <legend>Toppings:</legend>
+    <input type="checkbox" name="sprinkles" id="sprinkles">
+    <label for="sprinkles">Sprinkles</label>
+    <input type="checkbox" name="nuts" id="nuts">
+    <label for="nuts">Nuts</label>
+    <input type="checkbox" name="whip" id="whip">
+    <label for="whip">Whipped Cream</label>
+  </fieldset>
+
+  <label for="requests">Special Requests:</label>
+  <textarea name="requests" id="requests" 
+    minlength="10" maxlength="200"></textarea><br>
+
+  <fieldset id="coupon-container">
+    <label for="coupon">
+      Coupon:
+      <output id="coupon-message"></output>
+    </label>
+    <input type="text" id="coupon" name="coupon">
+    <button type="button" id="btn-coupon">Check Coupon</button>
+  </fieldset>
+  
+  <input type="checkbox" name="terms" id="terms" required>
+  <label for="terms">
+    I understand that I'm really not going to get any ice cream.
+  </label>
+  
+  <button name="submit">Submit</button>
+</form>
+</body>
+</html>
